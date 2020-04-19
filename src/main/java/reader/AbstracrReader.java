@@ -5,7 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class AbstracrReader {
+public abstract class AbstracrReader {
     public static String readJson(String path) throws IOException {
 
             String json = String.join(" ",
