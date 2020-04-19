@@ -3,7 +3,6 @@ package reader;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import entity.Estado;
-import entity.Regiao;
 
 import java.io.IOException;
 import java.lang.reflect.Type;

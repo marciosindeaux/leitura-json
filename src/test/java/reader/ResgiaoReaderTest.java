@@ -3,18 +3,17 @@ package reader;
 import com.google.gson.JsonSyntaxException;
 import entity.Regiao;
 import org.junit.Test;
-import org.junit.jupiter.api.Order;
 
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
+
 
 public class ResgiaoReaderTest {
 
     @Test
-    @Order(1)
     public void lerUmaRegiaoTest() throws IOException {
         Regiao regiao = RegiaoReader.readOneFrom("./static/RegiaoNorte.json");
         assertNotNull(regiao);
@@ -24,13 +23,11 @@ public class ResgiaoReaderTest {
     }
 
     @Test(expected = NoSuchFileException.class)
-    @Order(2)
     public void lerUmaRegiaoPathErradoTest() throws IOException {
         RegiaoReader.readOneFrom("./static/Regiao.json");
     }
 
     @Test
-    @Order(3)
     public void lerListaRegioes() throws IOException {
         List<Regiao> regioes = RegiaoReader.readListFrom("./static/Regioes.json");
         assertNotNull(regioes);
@@ -43,13 +40,11 @@ public class ResgiaoReaderTest {
     }
 
     @Test(expected = NoSuchFileException.class)
-    @Order(4)
     public void lerListaRegioesPathErradoTest() throws IOException {
         RegiaoReader.readListFrom("./static/Regiao.json");
     }
 
     @Test(expected = JsonSyntaxException.class)
-    @Order(5)
     public void lerListaRegioesJsonErradoTest() throws IOException {
         RegiaoReader.readListFrom("./static/RegiaoNorte.json");
     }

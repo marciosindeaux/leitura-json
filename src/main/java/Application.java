@@ -3,7 +3,6 @@ import reader.RegiaoReader;
 
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
-import java.util.*;
 
 public class Application {
     public static void main(String[] args) {

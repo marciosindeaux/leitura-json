@@ -40,8 +40,9 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.15234375" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.settings.project.osgi.project.settings" />
@@ -51,7 +52,14 @@
       <recent name="C:\Users\sinde\Documents\GitPessoal\leitura-json" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.EstaoReaderTest">
+  <component name="RunManager" selected="Application.Application">
+    <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Application" />
+      <module name="leitura-json" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="EstaoReaderTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="leitura-json" />
       <extension name="coverage">
@@ -114,29 +122,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ResgiaoReaderTest.lerUmaRegiaoPathErradoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="leitura-json" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="reader.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="reader" />
-      <option name="MAIN_CLASS_NAME" value="reader.ResgiaoReaderTest" />
-      <option name="METHOD_NAME" value="lerUmaRegiaoPathErradoTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Application" />
         <item itemvalue="JUnit.EstaoReaderTest" />
         <item itemvalue="JUnit.ResgiaoReaderTest" />
         <item itemvalue="JUnit.ResgiaoReaderTest.lerListaRegioesJsonErradoTest" />
         <item itemvalue="JUnit.ResgiaoReaderTest.lerListaRegioesPathErradoTest" />
-        <item itemvalue="JUnit.ResgiaoReaderTest.lerUmaRegiaoPathErradoTest" />
       </list>
     </recent_temporary>
   </component>
@@ -151,7 +143,8 @@
       <option name="presentableId" value="Default" />
       <updated>1587179931443</updated>
       <workItem from="1587179936685" duration="2692000" />
-      <workItem from="1587282498028" duration="8374000" />
+      <workItem from="1587282498028" duration="8666000" />
+      <workItem from="1587319338371" duration="164000" />
     </task>
     <servers />
   </component>
@@ -159,10 +152,10 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="160" y="0" key="#Project_Structure" timestamp="1587180103378">
+    <state x="160" y="0" key="#Project_Structure" timestamp="1587319242064">
       <screen x="0" y="0" width="1360" height="728" />
     </state>
-    <state x="160" y="0" key="#Project_Structure/0.0.1360.728@0.0.1360.728" timestamp="1587180103378" />
+    <state x="160" y="0" key="#Project_Structure/0.0.1360.728@0.0.1360.728" timestamp="1587319242064" />
     <state x="485" y="46" key="#com.intellij.ide.util.MemberChooser" timestamp="1587182078823">
       <screen x="0" y="0" width="1360" height="728" />
     </state>
@@ -171,38 +164,42 @@
       <screen x="0" y="0" width="1360" height="728" />
     </state>
     <state x="435" y="65" key="#xdebugger.evaluate/0.0.1360.728@0.0.1360.728" timestamp="1587318354022" />
-    <state width="1316" height="217" key="GridCell.Tab.0.bottom" timestamp="1587318856111">
+    <state width="1316" height="217" key="GridCell.Tab.0.bottom" timestamp="1587319313124">
       <screen x="0" y="0" width="1360" height="728" />
     </state>
-    <state width="1316" height="217" key="GridCell.Tab.0.bottom/0.0.1360.728@0.0.1360.728" timestamp="1587318856111" />
-    <state width="1316" height="217" key="GridCell.Tab.0.center" timestamp="1587318856111">
+    <state width="1316" height="217" key="GridCell.Tab.0.bottom/0.0.1360.728@0.0.1360.728" timestamp="1587319313124" />
+    <state width="1316" height="217" key="GridCell.Tab.0.center" timestamp="1587319313124">
       <screen x="0" y="0" width="1360" height="728" />
     </state>
-    <state width="1316" height="217" key="GridCell.Tab.0.center/0.0.1360.728@0.0.1360.728" timestamp="1587318856111" />
-    <state width="1316" height="217" key="GridCell.Tab.0.left" timestamp="1587318856111">
+    <state width="1316" height="217" key="GridCell.Tab.0.center/0.0.1360.728@0.0.1360.728" timestamp="1587319313124" />
+    <state width="1316" height="217" key="GridCell.Tab.0.left" timestamp="1587319313124">
       <screen x="0" y="0" width="1360" height="728" />
     </state>
-    <state width="1316" height="217" key="GridCell.Tab.0.left/0.0.1360.728@0.0.1360.728" timestamp="1587318856111" />
-    <state width="1316" height="217" key="GridCell.Tab.0.right" timestamp="1587318856111">
+    <state width="1316" height="217" key="GridCell.Tab.0.left/0.0.1360.728@0.0.1360.728" timestamp="1587319313124" />
+    <state width="1316" height="217" key="GridCell.Tab.0.right" timestamp="1587319313124">
       <screen x="0" y="0" width="1360" height="728" />
     </state>
-    <state width="1316" height="217" key="GridCell.Tab.0.right/0.0.1360.728@0.0.1360.728" timestamp="1587318856111" />
-    <state width="1316" height="217" key="GridCell.Tab.1.bottom" timestamp="1587318856111">
+    <state width="1316" height="217" key="GridCell.Tab.0.right/0.0.1360.728@0.0.1360.728" timestamp="1587319313124" />
+    <state width="1316" height="217" key="GridCell.Tab.1.bottom" timestamp="1587319313124">
       <screen x="0" y="0" width="1360" height="728" />
     </state>
-    <state width="1316" height="217" key="GridCell.Tab.1.bottom/0.0.1360.728@0.0.1360.728" timestamp="1587318856111" />
-    <state width="1316" height="217" key="GridCell.Tab.1.center" timestamp="1587318856111">
+    <state width="1316" height="217" key="GridCell.Tab.1.bottom/0.0.1360.728@0.0.1360.728" timestamp="1587319313124" />
+    <state width="1316" height="217" key="GridCell.Tab.1.center" timestamp="1587319313124">
       <screen x="0" y="0" width="1360" height="728" />
     </state>
-    <state width="1316" height="217" key="GridCell.Tab.1.center/0.0.1360.728@0.0.1360.728" timestamp="1587318856111" />
-    <state width="1316" height="217" key="GridCell.Tab.1.left" timestamp="1587318856111">
+    <state width="1316" height="217" key="GridCell.Tab.1.center/0.0.1360.728@0.0.1360.728" timestamp="1587319313124" />
+    <state width="1316" height="217" key="GridCell.Tab.1.left" timestamp="1587319313124">
       <screen x="0" y="0" width="1360" height="728" />
     </state>
-    <state width="1316" height="217" key="GridCell.Tab.1.left/0.0.1360.728@0.0.1360.728" timestamp="1587318856111" />
-    <state width="1316" height="217" key="GridCell.Tab.1.right" timestamp="1587318856111">
+    <state width="1316" height="217" key="GridCell.Tab.1.left/0.0.1360.728@0.0.1360.728" timestamp="1587319313124" />
+    <state width="1316" height="217" key="GridCell.Tab.1.right" timestamp="1587319313124">
       <screen x="0" y="0" width="1360" height="728" />
     </state>
-    <state width="1316" height="217" key="GridCell.Tab.1.right/0.0.1360.728@0.0.1360.728" timestamp="1587318856111" />
+    <state width="1316" height="217" key="GridCell.Tab.1.right/0.0.1360.728@0.0.1360.728" timestamp="1587319313124" />
+    <state x="210" y="17" key="Maven.ArtifactSearchDialog" timestamp="1587319431459">
+      <screen x="0" y="0" width="1360" height="728" />
+    </state>
+    <state x="210" y="17" key="Maven.ArtifactSearchDialog/0.0.1360.728@0.0.1360.728" timestamp="1587319431459" />
     <state x="160" y="0" key="SettingsEditor" timestamp="1587316610224">
       <screen x="0" y="0" width="1360" height="728" />
     </state>
