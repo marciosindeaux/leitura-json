@@ -30,4 +30,31 @@ bibliotecas não será possivel seguir com esse artigo.
         <scope>test</scope>
     </dependency>
 ```
+## Antes de Continuar: Um pouco de Java
+Bem... essa é a parte chata que os mais experientes vão poder pular, mas que é sempre bom revisar. A bibliooteca GSON tém muito do seu poder de simplificação porque ele trata o JSON como uam string. Sim, exatamente isso que voce leu. 
 
+Se voce é mais experiente, provavelmente já teve que ler algum arquivo estatico e agora na sua cabeça, já deve estar bolando algumas coisas para isso. De cara alguns já pensam em usar FileReader ou ImputStreamReader, mas calma, não vamos precisar de tantas coisas assim.
+
+Para voce que é mais novo nesse mundo, eu vou simplificar e explicar o que cada método de cada classe faz, voce que já é mais experiente pode pular e ir direto pro código, mas é sempre bom revisar.
+
+ * ``` Path.get(String dirPath) ``` 
+  O método estatico `get()` recebe uma String, ele tenta se orientar a partir da pasta raiz do seu projeto (pasta onde esta o pom.xml), então digamos que seu pom.xml esteja em `C:\Users\user\Documents\projeto` e voce passsa uma string com `./pasta`, o resultado disso será `C:\Users\user\Documents\projeto\pasta`. Ele retorna um Objeto `Path` que representa ou um diretório, ou um arquivo (caso passe um arquivo).
+<br>
+
+ * ``` Files.readAllLines(Path path, Charset charset) ```
+  O método estatico `readAllLines()` recebe 2 Parametros, o `Path` do arquivo no qual esta buscando ( agora fica claro o porque usamos a o método explicado acima), e o `Charset` do arquivo. Ele retorna uma Lista de `String`, cada item da nossa lista é uma linha do nosso arquivo. Bom, agora tudo já parece bem mais facil, mas espere, tem mais.
+
+ * ``` Strings.join(String delimitador, String ... items) ```
+  O método estatico `join()` recebe o primeiro parametro como um "delimitador". O outro campo é um spread operator, que significa que podemos receber uma ou mais `String`, que seão juntadas. Se voce já usou a função `split(String separator)`, saiba que ela faz o processo reverso, ao invez de separar, ela junta os items  pelo delimitador.Sigamos o exemplo abaixo:
+    ```java
+    List<String> lista = Arrays.asList("Meu", "Nome", "é", "Marcio");
+    String resultado = String.join(" ", lista);
+    System.out.println(resultado);
+    ```
+    A saida do codigo acima no console é `Meu Nome é Marcio`.
+    Ele também pode ser escrito dessa Forma:
+    ```java
+    String resultado = String.join(", ","Set", "Map", "List")
+    System.out.println(resultado);
+    ```
+    A saida do codigo acima no console é `Set, Map, List`
