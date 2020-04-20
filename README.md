@@ -31,9 +31,13 @@ bibliotecas não será possivel seguir com esse artigo.
     </dependency>
 ```
 ## Antes de Continuar: Um pouco de Java
-Bem... essa é a parte chata que os mais experientes vão poder pular, mas que é sempre bom revisar. A bibliooteca GSON tém muito do seu poder de simplificação porque ele trata o JSON como uam string. Sim, exatamente isso que voce leu. 
+Bem... essa é a parte chata que os mais experientes vão poder pular, mas é sempre bom revisar. A bibliooteca GSON tém muito do seu poder de simplificação porque ele trata o JSON como uam string.
 
 Se voce é mais experiente, provavelmente já teve que ler algum arquivo estatico e agora na sua cabeça, já deve estar bolando algumas coisas para isso. De cara alguns já pensam em usar FileReader ou ImputStreamReader, mas calma, não vamos precisar de tantas coisas assim.
+
+<img src="./staticMd/Vale-a-pena.jpg">
+<br>
+
 
 Para voce que é mais novo nesse mundo, eu vou simplificar e explicar o que cada método de cada classe faz, voce que já é mais experiente pode pular e ir direto pro código, mas é sempre bom revisar.
 
