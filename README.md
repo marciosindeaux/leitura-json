@@ -43,6 +43,7 @@ Para voce que é mais novo nesse mundo, eu vou simplificar e explicar o que cada
 
  * ``` Files.readAllLines(Path path, Charset charset) ```
   O método estatico `readAllLines()` recebe 2 Parametros, o `Path` do arquivo no qual esta buscando ( agora fica claro o porque usamos a o método explicado acima), e o `Charset` do arquivo. Ele retorna uma Lista de `String`, cada item da nossa lista é uma linha do nosso arquivo. Bom, agora tudo já parece bem mais facil, mas espere, tem mais.
+<br>
 
  * ``` Strings.join(String delimitador, String ... items) ```
   O método estatico `join()` recebe o primeiro parametro como um "delimitador". O outro campo é um spread operator, que significa que podemos receber uma ou mais `String`, que seão juntadas. Se voce já usou a função `split(String separator)`, saiba que ela faz o processo reverso, ao invez de separar, ela junta os items  pelo delimitador.Sigamos o exemplo abaixo:
