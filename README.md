@@ -109,7 +109,9 @@ _([Esse arquivo pode ser conferido nesse projeto](https://github.com/marciosinde
 
 ### Criando a Classe que representa o JSON 
 
-É importante ressaltar neste tópico, que como o GSON se orienta pela string formada, os nomes dos campos devem estar com o mesmo nome. É importante ressaltar que a Classe no Java deve conter campos com os nomes identicos aos do JSON e não há problema em ter campos sobressalentes, eles serão gerados com valor `null`, mas é importante que a Classe tenha os nomes iguals aos fornecidos pelo JSON
+É importante ressaltar neste tópico, que como o GSON se orienta pela string formada, os nomes dos campos devem estar com o mesmo nome. 
+
+É importante ressaltar que **a classe no Java deve conter campos com os nomes identicos aos do JSON e não há problema em ter campos sobressalentes**, eles serão gerados com valor `null`, mas é importante que a Classe tenha os nomes iguals aos fornecidos pelo JSON
 
 No caso do JSON acima, Temos 2 classes, logo de cara: A classe `Estado` e a classe `Regiao`. Veja como ficam as Classes no Java :
 
