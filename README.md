@@ -31,7 +31,7 @@ bibliotecas não será possivel seguir com esse artigo.
     </dependency>
 ```
 ## Antes de Continuar: Um pouco de Java
-Bem... essa é a parte chata que os mais experientes vão poder pular, mas é sempre bom revisar. A bibliooteca GSON tém muito do seu poder de simplificação porque ele trata o JSON como uam string.
+Bem... essa é a parte chata que os mais experientes vão poder pular, mas é sempre bom revisar. A biblioteca GSON tém muito do seu poder de simplificação porque ela Trabalha com Strings.
 
 Se voce é mais experiente, provavelmente já teve que ler algum arquivo estatico e agora na sua cabeça, já deve estar bolando algumas coisas para isso. De cara alguns já pensam em usar FileReader ou ImputStreamReader, mas calma, não vamos precisar de tantas coisas assim.
 
@@ -63,3 +63,74 @@ Para voce que é mais novo nesse mundo, eu vou simplificar e explicar o que cada
     System.out.println(resultado);
     ```
     A saida do codigo acima no console é `Set, Map, List`
+
+## Lendo o JSON e o transformando em Objeto
+
+Ok, agora chegamos na parte que realmente interessa. Como dito no topico anterior, a biblioteca GSON tém muito do seu poder de simplificação porque ela trabalha com String. 
+
+Ok, agora vamos levar em consideração que voce quer trabalhar com esse JSON:
+
+```json
+{
+  "id": 17,
+  "sigla": "TO",
+  "nome": "Tocantins",
+  "regiao": {
+    "id": 1,
+    "sigla": "N",
+    "nome": "Norte"
+  }
+}
+```
+_(json extraido da api de localidades do IBGE)_
+
+**Leve em consideração que na pasta onde ha o arquivo pom.xml existe uma pasta chama static e dentro dela o arquivo que carrega esse JSON se chama Tocantins.json** 
+
+### Lendo o JSON como String 
+
+Usando todos os método que já foram mostrado acima, fica bem facil deduzir um jeito de ler esse JSON. Mesmo assim vou mostrar a Foma que eu fiz para que possa auxiliar na compreensão do problema:
+
+Eu criei uma classe chamada `AbstractReader`, nela eu criei um método estatico chamado `readJson(String dirPath)`, ele une toda a logica de leitura em um unico método. Ela ficou assim :
+
+```java
+public abstract class AbstracrReader {
+    public static String readJson(String path) throws IOException {
+
+            String json = String.join(" ",
+                    Files.readAllLines(
+                            Paths.get(path),
+                            StandardCharsets.UTF_8)
+            );
+            return json;
+    }
+}
+```
+_([Esse arquivo pode ser conferido nesse projeto](https://github.com/marciosindeaux/leitura-json))_
+
+### Criando a Classe que representa o JSON 
+
+É importante ressaltar neste tópico, que como o GSON se orienta pela string formada, os nomes dos campos devem estar com o mesmo nome. É importante ressaltar que a Classe no Java deve conter campos com os nomes identicos aos do JSON e não há problema em ter campos sobressalentes, eles serão gerados com valor `null`, mas é importante que a Classe tenha os nomes iguals aos fornecidos pelo JSON
+
+No caso do JSON acima, Temos 2 classes, logo de cara: A classe `Estado` e a classe `Regiao`. Veja como ficam as Classes no Java :
+
+```java
+
+public class Regiao {
+    private Integer id;
+    private String sigla;
+    private String nome;
+    private List<Estado> estados = new ArrayList<>();
+
+    Getters e Setters omitidos
+}
+```
+```java
+public class Estado {
+    private Integer id;
+    private String sigla;
+    private String nome;
+    private Regiao regiao;
+
+    Getters e Setters omitidos
+}
+```
