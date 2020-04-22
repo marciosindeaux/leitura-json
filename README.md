@@ -1,16 +1,16 @@
 # Lendo arquivos JSON no Java de forma simplificada
 
-Em algum momento da nossa vida, teremos que ler um aqrquivo estatico e trata-lo em nosso sistema. Diversas  APIs no mundo disponibilizam diversos tipos de arquivos estaticos: CSVs, TXTs, JSONs e afins, para que o usuário analise os dados gerados e possa fazer algum tipo de "ajuste" ou análise dos dados, e é jsutamente essa parte que voce foi escolhido para automatizar.
+Em algum momento da nossa vida, teremos que ler um arquivo estático e tratá-lo em nosso sistema. Diversas  APIs no mundo disponibilizam diversos tipos de arquivos estáticos: CSVs, TXTs, JSONs e afins, para que o usuário possa fazer algum tipo de "ajuste" ou análise dos dados e é jsutamente essa parte que você foi escolhido para automatizar.
 
 
 ## Antes de tudo: Um alerta
-Primeiramente tenho que alertar: ler arquivos estaticos no sistema não é uma boa prática, faça isso apenas quando não ha nenhuma outra opção. Mas se porventura isso for realmente necessário, ai, bem, não é o ideal mas acontece
+Primeiramente tenho que alertar: ler arquivos estáticos no sistema não é uma boa prática, faça isso apenas quando não houver nenhuma outra opção. Mas se porventura isso for realmente necessário, ai, bem, não é o ideal mas acontece.
 
 <img src="./staticMd/nao_ideal.jpg">
 <br>
 
 ## Iniciando projeto
-Para seguir com esse projeto, é importante ter cconhecimento sobre a liguagem Java e colocar as dependencias do Gson e do Junit ( afinal, como saberemos se deu certo sem testes, não é ?) no seu POM. Sem essas
+Para seguir com esse projeto, é importante ter conhecimento sobre a liguagem Java e colocar as dependências do Gson e do JUnit ( afinal, como saberemos se deu certo sem testes, não é ?) no seu POM. Sem essas
 bibliotecas não será possivel seguir com esse artigo.
 ```xml
     <dependency>
@@ -31,44 +31,44 @@ bibliotecas não será possivel seguir com esse artigo.
     </dependency>
 ```
 ## Antes de Continuar: Um pouco de Java
-Bem... essa é a parte chata que os mais experientes vão poder pular, mas é sempre bom revisar. A biblioteca GSON tém muito do seu poder de simplificação porque ela Trabalha com Strings.
+Bem... essa é a parte chata que os mais experientes vão poder pular, mas é sempre bom revisar. A biblioteca GSON tém muito poder de simplificação porque ela Trabalha com Strings.
 
-Se voce é mais experiente, provavelmente já teve que ler algum arquivo estatico e agora na sua cabeça, já deve estar bolando algumas coisas para isso. De cara alguns já pensam em usar `FileReader` ou `InputStreamReader`, mas calma, não vamos precisar de tantas coisas assim.
+Se você é mais experiente, provavelmente já teve que ler algum arquivo estático e agora na sua cabeça e já deve estar bolando algumas coisas para realizar essa ação. De cara alguns já pensam em usar `FileReader` ou `InputStreamReader`, mas calma, não vamos precisar de tantas coisas assim.
 
 <img src="./staticMd/Vale-a-pena.jpg">
 <br>
 
 
-Para voce que é mais novo nesse mundo, eu vou simplificar e explicar o que cada método de cada classe faz, voce que já é mais experiente pode pular e ir direto pro código, mas é sempre bom revisar.
+Para você que é mais novo nesse mundo, eu vou simplificar e explicar o que cada método de cada classe faz. Você que já é mais experiente pode pular e ir direto pro código, mas é sempre bom revisar.
 
  * ``` Path.get(String dirPath) ``` 
-  O método estatico `get()` recebe uma `String`, ele tenta se orientar a partir da pasta raiz do seu projeto (pasta onde esta o pom.xml), então digamos que seu pom.xml esteja em `C:\Users\user\Documents\projeto` e voce passsa uma string com `./pasta`, o resultado disso será `C:\Users\user\Documents\projeto\pasta`. Ele retorna um Objeto `Path` que representa ou um diretório, ou um arquivo (caso passe um arquivo).
+  O método estático `get()` recebe uma `String`, ele tenta se orientar a partir da pasta raiz do seu projeto (pasta onde esta o pom.xml), então digamos que seu pom.xml esteja em `C:\Users\user\Documents\projeto` e você passsará uma string com `./pasta`, o resultado disso será `C:\Users\user\Documents\projeto\pasta`. Ele retornará um Objeto `Path` que representa ou um diretório ou um arquivo (caso passe um arquivo).
 <br>
 
  * ``` Files.readAllLines(Path path, Charset charset) ```
-  O método estatico `readAllLines()` recebe 2 Parametros, o `Path` do arquivo no qual esta buscando ( agora fica claro o porque usamos a o método explicado acima), e o `Charset` do arquivo. Ele retorna uma lista de `String`, cada item da nossa lista é uma linha do nosso arquivo. Bom, agora tudo já parece bem mais facil, mas espere, tem mais.
+  O método estático `readAllLines()` recebe 2 parâmetros, o `Path` do arquivo no qual está buscando ( agora fica claro o porquê de usarmos o método explicado acima), e o `Charset` do arquivo. Ele retorna uma lista de `String`, cada item da nossa lista é uma linha do nosso arquivo. Bom, agora tudo já parece bem mais fácil, mas espere, tem mais.
 <br>
 
- * ``` Strings.join(String delimitador, String ... items) ```
-  O método estatico `join()` recebe o primeiro parametro como um "delimitador". O outro campo é um spread operator, que significa que podemos receber uma ou mais `String`, que seão juntadas. Se voce já usou a função `split(String separator)`, saiba que ela faz o processo reverso, ao invez de separar, ela junta os items  pelo delimitador.Sigamos o exemplo abaixo:
+ * ``` Strings.join(String delimitador, String ... itens) ```
+  O método estático `join()` recebe o primeiro parâmetro como um "delimitador". O outro campo é um spread operator, que significa que podemos receber uma ou mais `String`, que serão juntadas. Se você já usou a função `split(String separator)`, saiba que ela faz o processo reverso, ao invés de separar, ela junta os itens  pelo delimitador. Sigamos o exemplo abaixo:
     ```java
     List<String> lista = Arrays.asList("Meu", "Nome", "é", "Marcio");
     String resultado = String.join(" ", lista);
     System.out.println(resultado);
     ```
-    A saida do codigo acima no console é `Meu Nome é Marcio`.
+    A saida do código acima no console é `Meu Nome é Marcio`.
     Ele também pode ser escrito dessa Forma:
     ```java
     String resultado = String.join(", ","Set", "Map", "List")
     System.out.println(resultado);
     ```
-    A saida do codigo acima no console é `Set, Map, List`
+    A saida do código acima no console é `Set, Map, List`
 
 ## Lendo o JSON e o transformando em Objeto
 
-Ok, agora chegamos na parte que realmente interessa. Como dito no topico anterior, a biblioteca GSON tém muito do seu poder de simplificação porque ela trabalha com String. 
+Ok, agora chegamos na parte que realmente interessa. Como dito no tópico anterior, a biblioteca GSON tem muito poder de simplificação porque ela trabalha com Strings. 
 
-Ok, agora vamos levar em consideração que voce quer trabalhar com esse JSON:
+Ok, agora vamos levar em consideração que você quer trabalhar com esse JSON:
 
 ```json
 {
@@ -90,7 +90,7 @@ _(json extraido da api de localidades do IBGE)_
 
 Usando todos os método que já foram mostrado acima, fica bem facil deduzir um jeito de ler esse JSON. Mesmo assim vou mostrar a Foma que eu fiz para que possa auxiliar na compreensão do problema:
 
-De certa forma fazer código repetido é bem facil, então eu criei uma classe chamada `AbstractReader`, nela eu criei um método estatico chamado `readJson(String dirPath)`, ele une toda a logica de leitura em um unico método. Ela ficou assim :
+De certa forma fazer código repetido é bem facil, então eu criei uma classe chamada `AbstractReader`, nela eu criei um método estático chamado `readJson(String dirPath)`, ele une toda a logica de leitura em um unico método. Ela ficou assim :
 
 ```java
 public abstract class AbstracrReader {
@@ -156,7 +156,7 @@ Type type = new TypeToken<List<Estado>>(){}.getType();
 
 ### Transformando o Json em Objeto
 
-Bom... Se voce hegou nesse ponto, e provavelmente seguiu os passos anteriores, saiba que a partir daqui a coisa é bem simples. 
+Bom... Se você hegou nesse ponto, e provavelmente seguiu os passos anteriores, saiba que a partir daqui a coisa é bem simples. 
 
 Existem uma classe na biblioteca GSON chamada `Gson`, e existe um método nela chamado `fromJson(String jsonText, Type convertType)`. Esse método recebe o JSON como string, o Tipo do JSON e retorna uma instancia do tipo da classe com os dados encontrados na string. 
 
@@ -172,7 +172,7 @@ Bem simples, não é ?
 
 ## Sugestão de implementação
 
-Bom. Caso voce vá fazer essa implementação para muitos JSONs diferentes, eu sugiro que para cada classe, voce crie uma classe `Reader`, que herde de `AbstractReader`, para cada entidade que for ler como JSON.
+Bom. Caso você vá fazer essa implementação para muitos JSONs diferentes, eu sugiro que para cada classe, você crie uma classe `Reader`, que herde de `AbstractReader`, para cada entidade que for ler como JSON.
 
 Isso pode ficar grande ? Claro que sim, mas cada códifo de cada classe estara isolado e as responsabilidades estarão divididas, além disso, isso vai evitar códigos repetidos.
 
