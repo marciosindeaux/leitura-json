@@ -84,13 +84,13 @@ Ok, agora vamos levar em consideração que você quer trabalhar com esse JSON:
 ```
 _(json extraido da api de localidades do IBGE)_
 
-**Leve em consideração que na pasta onde ha o arquivo pom.xml existe uma pasta chama static e dentro dela o arquivo que carrega esse JSON se chama Tocantins.json** 
+**Leve em consideração que na pasta onde há o arquivo pom.xml existe uma pasta chamada static e dentro dela o arquivo que carrega esse JSON se chama Tocantins.json.** 
 
 ### Lendo o JSON como String 
 
-Usando todos os método que já foram mostrado acima, fica bem facil deduzir um jeito de ler esse JSON. Mesmo assim vou mostrar a Foma que eu fiz para que possa auxiliar na compreensão do problema:
+Usando todos os método que já foram mostrado acima, fica bem fácil deduzir um jeito de ler esse JSON. Mesmo assim vou mostrar a foma que eu fiz para que possa auxiliar na compreensão do problema:
 
-De certa forma fazer código repetido é bem facil, então eu criei uma classe chamada `AbstractReader`, nela eu criei um método estático chamado `readJson(String dirPath)`, ele une toda a logica de leitura em um unico método. Ela ficou assim :
+De certa forma fazer código repetido é bem fácil, então eu criei uma classe chamada `AbstractReader`, nela eu criei um método estático chamado `readJson(String dirPath)`, ele une toda a lógica de leitura em um único método. Ela ficou assim :
 
 ```java
 public abstract class AbstracrReader {
@@ -106,14 +106,13 @@ public abstract class AbstracrReader {
 ```
 _([Esse arquivo pode ser conferido nesse projeto](https://github.com/marciosindeaux/leitura-json))_
 
-### Criando a Classe que representa o JSON 
+### Criando a classe que representa o JSON 
 
-É importante ressaltar neste tópico, que como o GSON se orienta pela string formada, então **a classe no Java deve conter campos com os nomes identicos aos do JSON e não há problema em ter campos sobressalentes**, eles serão gerados com valor `null`, mas é importante que a classe tenha os nomes iguals aos fornecidos pelo JSON
+É importante ressaltar neste tópico, que como o GSON se orienta pela string formada, então, **a classe no Java deve conter campos com os nomes idênticos aos do JSON e não há problema em ter campos sobressalentes**, eles serão gerados com valor `null`, mas é importante que a classe tenha os nomes iguals aos fornecidos pelo JSON.
 
-No caso do JSON acima, Temos 2 classes, logo de cara: A classe `Estado` e a classe `Regiao`. Veja como ficam as Classes no Java :
+No caso do JSON acima, temos 2 classes, logo de cara: a classe `Estado` e a classe `Regiao`. Veja como ficam as classes no Java :
 
 ```java
-
 public class Regiao {
     private Integer id;
     private String sigla;
@@ -134,33 +133,33 @@ public class Estado {
 }
 ```
 
-### Buscando o Tipo da classe Java
+### Buscando o Tipo da classe no Java
 
-Até agora, nós não usamos nada da biblioteca GSON, mas é aqui que isso muda, vamos usa-la para conseguir fazer essa transformação. 
+Até agora, nós não usamos nada da biblioteca GSON, mas é aqui que isso muda. Vamos usá-la para conseguir fazer essa operação. 
 
-Agora que já temos o JSON como string, precisamos dizer qual o tipo de classe que esse JSON é, para isso, vamos nos ultilizar de uma classe chamada `TypeToken` dessa biblioteca.
+Agora que já temos o JSON como String, precisamos dizer qual o tipo de classe que esse JSON é, para isso, vamos nos ultilizar de uma classe chamada `TypeToken` dessa biblioteca.
 
-A classe `TypeToken` implementa a classe `Type` ( das reflections ) do java. Segundo a documentação oficial, o Java não provem uma forma de representar tipos genéricos, então essa classe Faz isso. Ela força o programador a criar uma classe anonima interna e assim pegar o Tipo em tempo de Execução
+A classe `TypeToken` implementa a classe `Type` (das reflections) do Java. Segundo a documentação oficial, o Java não provê uma forma de representar tipos genéricos, então essa classe faz isso. Ela força o programador a criar uma classe anônima interna e assim pegar o tipo em tempo de execução.
 
-Para o nosso código seria algo como isso :
+Nosso código seria algo como isso: 
 
 ```java
 Type type = new TypeToken<Estado>(){}.getType();
 ```
 
- > Agora fica a dúvida: e se tivessimos um JSON com uma lista de estados, ao invez de apenas um estado como isso ficaria ? A resposta é simples:
+ > Agora fica a dúvida: se tivéssemos um JSON com uma lista de estados ao inves de apenas um estado, como isso ficaria? A resposta é simples:
 
 ```java
 Type type = new TypeToken<List<Estado>>(){}.getType();
 ```
 
-### Transformando o Json em Objeto
+### Transformando o JSON em Objeto
 
-Bom... Se você hegou nesse ponto, e provavelmente seguiu os passos anteriores, saiba que a partir daqui a coisa é bem simples. 
+Bom... Se você chegou nesse ponto, e provavelmente seguiu os passos anteriores, saiba que a partir daqui a coisa é bem simples. 
 
-Existem uma classe na biblioteca GSON chamada `Gson`, e existe um método nela chamado `fromJson(String jsonText, Type convertType)`. Esse método recebe o JSON como string, o Tipo do JSON e retorna uma instancia do tipo da classe com os dados encontrados na string. 
+Existem uma classe na biblioteca GSON chamada `Gson`, e existe um método nela chamado `fromJson(String jsonText, Type convertType)`. Esse método recebe o JSON como String e o Tipo do JSON e retorna uma instância do tipo da classe com os dados encontrados na String. 
 
-A implementação dessa Leitura fica assim:
+A implementação dessa ação fica assim:
 
 ```java
 String jsonText = AbstracrReader.readJson("./static/Tocantins.json");
@@ -172,11 +171,11 @@ Bem simples, não é ?
 
 ## Sugestão de implementação
 
-Bom. Caso você vá fazer essa implementação para muitos JSONs diferentes, eu sugiro que para cada classe, você crie uma classe `Reader`, que herde de `AbstractReader`, para cada entidade que for ler como JSON.
+Caso você faça essa implementação para muitos JSONs diferentes, eu sugiro que, para cada classe você crie uma classe `Reader`, que herde de `AbstractReader`. Uma para cada JSON diferente.
 
-Isso pode ficar grande ? Claro que sim, mas cada códifo de cada classe estara isolado e as responsabilidades estarão divididas, além disso, isso vai evitar códigos repetidos.
+Isso pode ficar grande? Claro que sim, mas cada código de cada classe estará isolado e as responsabilidades estarão divididas. Além disso, isso vai evitar códigos repetidos.
 
-Para o caso citado acima, foi criado um reader para a entidade `Estado`:
+Para o caso citado acima, foi criado um `Reader`  para a entidade `Estado`:
 
 ```java
 public class EstadoReader  extends AbstracrReader {
@@ -198,4 +197,4 @@ public class EstadoReader  extends AbstracrReader {
 
 
 É isso, espero que tenha ajudado. 
-Até a proxima
+Até a próxima!
