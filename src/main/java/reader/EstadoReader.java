@@ -11,6 +11,7 @@ import java.util.List;
 public class EstadoReader  extends AbstracrReader {
     public static Estado readOneFrom(String path) throws IOException {
         String jsonText = readJson(path);
+
         Type collectionType = new TypeToken<Estado>(){}.getType();
         return new Gson().fromJson(jsonText,collectionType);
     }
