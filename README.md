@@ -31,7 +31,7 @@ bibliotecas não será possível seguir com esse artigo.
     </dependency>
 ```
 ## Antes de Continuar: Um pouco de Java
-Bem... essa é a parte chata que os mais experientes vão poder pular, mas é sempre bom revisar. A biblioteca GSON tem muito poder de simplificação porque ela Trabalha com Strings.
+Bem... essa é a parte chata que os mais experientes vão poder pular, mas é sempre bom revisar. A biblioteca GSON tem muito poder de simplificação porque ela Trabalha com `String`.
 
 Se você é mais experiente, provavelmente já teve que ler algum arquivo estático e agora na sua cabeça e já deve estar bolando algumas coisas para realizar essa ação. De cara alguns já pensam em usar `FileReader` ou `InputStreamReader`, mas calma, não vamos precisar de tantas coisas assim.
 
@@ -42,7 +42,7 @@ Se você é mais experiente, provavelmente já teve que ler algum arquivo estát
 Para você que é mais novo nesse mundo, eu vou simplificar e explicar o que cada método de cada classe faz. Você que já é mais experiente pode pular e ir direto para o código, mas é sempre bom revisar.
 
  * ``` Path.get(String dirPath) ``` 
-  O método estático `get()` recebe uma `String`, ele tenta se orientar a partir da pasta raiz do seu projeto (pasta onde está o pom.xml), então digamos que seu pom.xml esteja em `C:\Users\user\Documents\projeto` e você passará uma String com `./pasta`, o resultado disso será `C:\Users\user\Documents\projeto\pasta`. Ele retornará um Objeto `Path` que representa ou um diretório ou um arquivo (caso passe um arquivo).
+  O método estático `get()` recebe uma `String`, ele tenta se orientar a partir da pasta raiz do seu projeto (pasta onde está o pom.xml), então digamos que seu pom.xml esteja em `C:\Users\user\Documents\projeto` e você passará uma `String` com `./pasta`, o resultado disso será `C:\Users\user\Documents\projeto\pasta`. Ele retornará um Objeto `Path` que representa ou um diretório ou um arquivo (caso passe um arquivo).
 <br>
 
  * ``` Files.readAllLines(Path path, Charset charset) ```
@@ -56,17 +56,17 @@ Para você que é mais novo nesse mundo, eu vou simplificar e explicar o que cad
     String resultado = String.join(" ", lista);
     System.out.println(resultado);
     ```
-    A saida do código acima no console é `Meu Nome é Marcio`.
+    A saída do código acima no console é `Meu Nome é Marcio`.
     Ele também pode ser escrito dessa Forma:
     ```java
     String resultado = String.join(", ","Set", "Map", "List")
     System.out.println(resultado);
     ```
-    A saida do código acima no console é `Set, Map, List`
+    A saída do código acima no console é `Set, Map, List`
 
 ## Lendo o JSON e o transformando em Objeto
 
-Ok, agora chegamos na parte que realmente interessa. Como dito no tópico anterior, a biblioteca GSON tem muito poder de simplificação porque ela trabalha com Strings. 
+Ok, agora chegamos na parte que realmente interessa. Como dito no tópico anterior, a biblioteca GSON tem muito poder de simplificação porque ela trabalha com `String`. 
 
 Ok, agora vamos levar em consideração que você quer trabalhar com esse JSON:
 
@@ -88,7 +88,7 @@ _(json extraído da api de localidades do IBGE)_
 
 ### Lendo o JSON como String 
 
-Usando todos os método que já foram mostrados acima, fica bem fácil deduzir um jeito de ler esse JSON. Mesmo assim vou mostrar a foma que eu fiz para que possa auxiliar na compreensão do problema:
+Usando todos os método que já foram mostrados acima, fica bem fácil deduzir um jeito de ler esse JSON. Mesmo assim vou mostrar a forma que eu fiz para que possa auxiliar na compreensão do problema:
 
 De certa forma fazer código repetido é bem fácil, então eu criei uma classe chamada `AbstractReader`, nela eu criei um método estático chamado `readJson(String dirPath)`, ele une toda a lógica de leitura em um único método. Ela ficou assim :
 
@@ -108,7 +108,7 @@ _([Esse arquivo pode ser conferido nesse projeto](https://github.com/marciosinde
 
 ### Criando a classe que representa o JSON 
 
-É importante ressaltar neste tópico, que como o GSON se orienta pela String formada, então, **a classe no Java deve conter campos com os nomes idênticos aos do JSON e não há problema em ter campos sobressalentes**, eles serão gerados com valor `null`, mas é importante que a classe tenha os nomes iguais aos fornecidos pelo JSON.
+É importante ressaltar neste tópico, que como o GSON se orienta pela `String` formada, então, **a classe no Java deve conter campos com os nomes idênticos aos do JSON e não há problema em ter campos sobressalentes**, eles serão gerados com valor `null`, mas é importante que a classe tenha os nomes iguais aos fornecidos pelo JSON.
 
 No caso do JSON acima, temos 2 classes, logo de cara: a classe `Estado` e a classe `Regiao`. Veja como ficam as classes no Java :
 
@@ -137,7 +137,7 @@ public class Estado {
 
 Até agora, nós não usamos nada da biblioteca GSON, mas é aqui que isso muda. Vamos usá-la para conseguir fazer essa operação. 
 
-Agora que já temos o JSON como String, precisamos dizer qual o tipo de classe que esse JSON é, para isso, vamos nos utilizar de uma classe chamada `TypeToken` dessa biblioteca.
+Agora que já temos o JSON como `String`, precisamos dizer qual o tipo de classe que esse JSON é, para isso, vamos nos utilizar de uma classe chamada `TypeToken` dessa biblioteca.
 
 A classe `TypeToken` implementa a classe `Type` (das reflections) do Java. Segundo a documentação oficial, o Java não provê uma forma de representar tipos genéricos, então essa classe faz isso. Ela força o programador a criar uma classe anônima interna e assim pegar o tipo em tempo de execução.
 
@@ -147,7 +147,7 @@ Nosso código seria algo como isso:
 Type type = new TypeToken<Estado>(){}.getType();
 ```
 
- > Agora fica a dúvida: se tivéssemos um JSON com uma lista de estados ao inves de apenas um estado, como isso ficaria? A resposta é simples:
+ > Agora fica a dúvida: se tivéssemos um JSON com uma lista de estados ao invés de apenas um estado, como isso ficaria? A resposta é simples:
 
 ```java
 Type type = new TypeToken<List<Estado>>(){}.getType();
@@ -157,7 +157,7 @@ Type type = new TypeToken<List<Estado>>(){}.getType();
 
 Bom... Se você chegou nesse ponto, e provavelmente seguiu os passos anteriores, saiba que a partir daqui a coisa é bem simples. 
 
-Existem uma classe na biblioteca GSON chamada `Gson`, e existe um método nela chamado `fromJson(String jsonText, Type convertType)`. Esse método recebe o JSON como String e o Tipo do JSON e retorna uma instância do tipo da classe com os dados encontrados na String. 
+Existem uma classe na biblioteca GSON chamada `Gson`, e existe um método nela chamado `fromJson(String jsonText, Type convertType)`. Esse método recebe o JSON como `String` e o Tipo do JSON e retorna uma instância do tipo da classe com os dados encontrados na `String`. 
 
 A implementação dessa ação fica assim:
 
@@ -167,7 +167,7 @@ Type type = new TypeToken<Estado>(){}.getType();
 Estado estado = new Gson().fromJson(jsonText, type);
 ```
 
-Bem simples, não é ?
+Bem simples, não é?
 
 ## Sugestão de implementação
 
