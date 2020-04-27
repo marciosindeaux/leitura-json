@@ -119,7 +119,7 @@ public class Regiao {
     private String nome;
     private List<Estado> estados = new ArrayList<>();
 
-    Getters e Setters omitidos
+    //Getters e Setters omitidos
 }
 ```
 ```java
@@ -129,7 +129,7 @@ public class Estado {
     private String nome;
     private Regiao regiao;
 
-    Getters e Setters omitidos
+    //Getters e Setters omitidos
 }
 ```
 
